@@ -1,15 +1,15 @@
-# KoE5: 한국어 특화 임베딩 모델
+# KURE: Korea University Retrieval Embedding model
 
 ## Update Logs
-- 2024.10.02: [🤗KoE5](https://huggingface.co/nlpai-lab/KoE5), [🤗ko-triplet-v1.0](https://huggingface.co/datasets/nlpai-lab/ko-triplet-v1.0) 공개
+- 2024.10.02: [🤗 KoE5](https://huggingface.co/nlpai-lab/KoE5), [🤗 ko-triplet-v1.0](https://huggingface.co/datasets/nlpai-lab/ko-triplet-v1.0) 공개
 
 ---
 
 <br>
 
-KoE5는 고려대학교 [NLP & AI 연구실](http://nlp.korea.ac.kr/)과 [HIAI 연구소](http://hiai.korea.ac.kr)가 개발한 한국어 특화 임베딩 모델입니다.
+KURE는 고려대학교 [NLP & AI 연구실](http://nlp.korea.ac.kr/)과 [HIAI 연구소](http://hiai.korea.ac.kr)가 개발한 한국어 특화 임베딩 모델입니다.
 
-KoE5를 공개합니다.  
+KURE를 공개합니다.  
 <br/>
 
 ## KoE5 검색 성능 결과

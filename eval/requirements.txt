@@ -1,2 +1,3 @@
 mteb
 python-dotenv
+streamlit

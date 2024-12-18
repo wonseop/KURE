@@ -76,7 +76,7 @@ model_names = [
     "BAAI/bge-m3", # 8192
     "nlpai-lab/KoE5", # 512
     "dragonkue/BGE-m3-ko", # 8192
-    "Snowflake/snowflake-arctic-embed-l-v2.0" # 8192
+    "Snowflake/snowflake-arctic-embed-l-v2.0" # 8192,
 ] + model_names
 
 def evaluate_model(model_name):

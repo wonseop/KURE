@@ -77,6 +77,7 @@ model_names = [
     "nlpai-lab/KoE5", # 512
     "dragonkue/BGE-m3-ko", # 8192
     "Snowflake/snowflake-arctic-embed-l-v2.0" # 8192,
+    "nlpai-lab/KURE-v1" # 8192
 ] + model_names
 
 def evaluate_model(model_name):
@@ -135,7 +136,7 @@ def evaluate_model(model_name):
                 batch_size = 512
             elif "jina" in model_name:
                 batch_size = 8
-            elif "bge-m3" in model_name:
+            elif "bge-m3" in model_name or "KURE" in model_name:
                 batch_size = 32
             elif "gemma2" in model_name:
                 batch_size = 256 

@@ -168,7 +168,7 @@ streamlit run leaderboard.py
 <br/>
 
 ## Training Details
-- KUREv1은 [BAAI/bge-m3](https://huggingface.co/BAAI/bge-m3)를 기반으로 fine-tuning된 모델입니다.
+- KURE-v1은 [BAAI/bge-m3](https://huggingface.co/BAAI/bge-m3)를 기반으로 fine-tuning된 모델입니다.
 - KoE5는 [intfloat/multilingual-e5-large](https://huggingface.co/intfloat/multilingual-e5-large)를 기반으로 fine-tuning된 모델입니다.
 
 ### Training Data
@@ -197,7 +197,7 @@ streamlit run leaderboard.py
 <br/>
 
 ## 주의사항
-- KoE5 사용 시, prefix를 붙여 주어야 합니다. (query: {query}, passage: {positive})
+- KoE5 사용 시, prefix를 붙여 주어야 합니다. (query: {query}, passage: {document})
   
 ## License
 - ```MIT```

@@ -1,7 +1,7 @@
 # 🔎 KURE: Korea University Retrieval Embedding model
 
 ## Update Logs
-- 2024.12.21: [🤗 KURE-v1](https://huggingface.co/nlpai-lab/KURE-v1), MTEB-ko-retrieval 리더보드 공개
+- 2024.12.21: [🤗 KURE-v1](https://huggingface.co/nlpai-lab/KURE-v1), [MTEB-ko-retrieval Leaderboard](https://github.com/nlpai-lab/KURE?tab=readme-ov-file#mteb-ko-retrieval-leaderboard) 공개
 - 2024.10.02: [🤗 KoE5](https://huggingface.co/nlpai-lab/KoE5), [🤗 ko-triplet-v1.0](https://huggingface.co/datasets/nlpai-lab/ko-triplet-v1.0) 공개
 
 ---
@@ -57,14 +57,14 @@ print(similarities)
 ## MTEB-ko-retrieval leaderboard
 MTEB에 등록된 모든 Korean Retrieval Benchmark에 대한 평가를 진행하였습니다.
 ### Korean Retrieval Benchmark
-- Ko-StrategyQA: 한국어 ODQA multi-hop 검색 데이터셋 (StrategyQA 번역)
-- AutoRAGRetrieval: 금융, 공공, 의료, 법률, 커머스 5개 분야에 대해, pdf를 파싱하여 구성한 한국어 문서 검색 데이터셋
-- MIRACLRetrieval: Wikipedia 기반의 한국어 문서 검색 데이터셋
-- PublicHealthQA: 의료 및 공중보건 도메인에 대한 한국어 문서 검색 데이터셋
-- BelebeleRetrieval: FLORES-200 기반의 한국어 문서 검색 데이터셋
-- MrTidyRetrieval: Wikipedia 기반의 한국어 문서 검색 데이터셋
-- MultiLongDocRetrieval: 다양한 도메인의 한국어 장문 검색 데이터셋
-- XPQARetrieval: 다양한 도메인의 한국어 문서 검색 데이터셋
+- [Ko-StrategyQA](https://huggingface.co/datasets/taeminlee/Ko-StrategyQA): 한국어 ODQA multi-hop 검색 데이터셋 (StrategyQA 번역)
+- [AutoRAGRetrieval](https://huggingface.co/datasets/yjoonjang/markers_bm): 금융, 공공, 의료, 법률, 커머스 5개 분야에 대해, pdf를 파싱하여 구성한 한국어 문서 검색 데이터셋
+- [MIRACLRetrieval]([url](https://huggingface.co/datasets/miracl/miracl)): Wikipedia 기반의 한국어 문서 검색 데이터셋
+- [PublicHealthQA]([url](https://huggingface.co/datasets/xhluca/publichealth-qa)): 의료 및 공중보건 도메인에 대한 한국어 문서 검색 데이터셋
+- [BelebeleRetrieval]([url](https://huggingface.co/datasets/facebook/belebele)): FLORES-200 기반의 한국어 문서 검색 데이터셋
+- [MrTidyRetrieval](https://huggingface.co/datasets/mteb/mrtidy): Wikipedia 기반의 한국어 문서 검색 데이터셋
+- [MultiLongDocRetrieval](https://huggingface.co/datasets/Shitao/MLDR): 다양한 도메인의 한국어 장문 검색 데이터셋
+- [XPQARetrieval](https://huggingface.co/datasets/jinaai/xpqa): 다양한 도메인의 한국어 문서 검색 데이터셋
 
 ### Evaluation code
 `evaluate.py`에 모델을 추가하여 mteb를 활용한 평가를 진행할 수 있습니다.
@@ -210,6 +210,7 @@ If you find our paper or models helpful, please consider cite as follows:
   year = {2024},
   url = {https://github.com/nlpai-lab/KURE}
 },
+
 @misc{KoE5,
   author = {NLP & AI Lab and Human-Inspired AI research},
   title = {KoE5: 한국어 임베딩 성능 향상을 위한 새로운 데이터셋 및 모델},

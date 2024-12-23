@@ -25,8 +25,9 @@ pip install sentence-transformers
 from sentence_transformers import SentenceTransformer
 
 # Download from the 🤗 Hub
-# model = SentenceTransformer("nlpai-lab/KoE5")
+
 model = SentenceTransformer("nlpai-lab/KURE-v1")
+# model = SentenceTransformer("nlpai-lab/KoE5")
 
 # Run inference
 sentences = [

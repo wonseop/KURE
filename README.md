@@ -55,7 +55,7 @@ print(similarities)
 
 <br/>
 
-## MTEB-ko-retrieval leaderboard
+## MTEB-ko-retrieval Leaderboard
 MTEB에 등록된 모든 Korean Retrieval Benchmark에 대한 평가를 진행하였습니다.
 ### Korean Retrieval Benchmark
 - [Ko-StrategyQA](https://huggingface.co/datasets/taeminlee/Ko-StrategyQA): 한국어 ODQA multi-hop 검색 데이터셋 (StrategyQA 번역)

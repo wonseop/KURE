@@ -105,7 +105,7 @@ streamlit run leaderboard.py
 | jhgan/ko-sroberta-multitask             | 0.33788              | 0.38497                | 0.38497           | 0.35678         |
 
 ### Top-k 3
-| Model                                   | Average Recall_top1 | Average Precision_top1 | Average NDCG_top1 | Average F1_top1 |
+| Model                                   | Average Recall_top3 | Average Precision_top3 | Average NDCG_top3 | Average F1_top3 |
 |-----------------------------------------|----------------------|------------------------|-------------------|-----------------|
 | **nlpai-lab/KURE-v1**                   | **0.68678**          | **0.28711**            | **0.65538**       | **0.39835**     |
 | dragonkue/BGE-m3-ko                     | 0.67834              | 0.28385                | 0.64950           | 0.39378         |
@@ -126,7 +126,7 @@ streamlit run leaderboard.py
 | jhgan/ko-sroberta-multitask             | 0.46930              | 0.18994                | 0.43293           | 0.26696         |
 
 ### Top-k 5
-| Model                                   | Average Recall_top1 | Average Precision_top1 | Average NDCG_top1 | Average F1_top1 |
+| Model                                   | Average Recall_top5 | Average Precision_top5 | Average NDCG_top5 | Average F1_top5 |
 |-----------------------------------------|----------------------|------------------------|-------------------|-----------------|
 | **nlpai-lab/KURE-v1**                   | **0.73851**          | **0.19130**            | **0.67479**       | **0.29903**     |
 | dragonkue/BGE-m3-ko                     | 0.72517              | 0.18799                | 0.66692           | 0.29401         |
@@ -147,7 +147,7 @@ streamlit run leaderboard.py
 | jhgan/ko-sroberta-multitask             | 0.53136              | 0.13264                | 0.45879           | 0.20976         |
 
 ### Top-k 10
-| Model                                   | Average Recall_top1 | Average Precision_top1 | Average NDCG_top1 | Average F1_top1 |
+| Model                                   | Average Recall_top10 | Average Precision_top10 | Average NDCG_top10 | Average F1_top10 |
 |-----------------------------------------|----------------------|------------------------|-------------------|-----------------|
 | **nlpai-lab/KURE-v1**                   | **0.79682**          | **0.10624**            | **0.69473**       | **0.18524**     |
 | dragonkue/BGE-m3-ko                     | 0.78450              | 0.10492                | 0.68748           | 0.18288         |

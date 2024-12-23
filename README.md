@@ -60,9 +60,9 @@ MTEB에 등록된 모든 Korean Retrieval Benchmark에 대한 평가를 진행�
 ### Korean Retrieval Benchmark
 - [Ko-StrategyQA](https://huggingface.co/datasets/taeminlee/Ko-StrategyQA): 한국어 ODQA multi-hop 검색 데이터셋 (StrategyQA 번역)
 - [AutoRAGRetrieval](https://huggingface.co/datasets/yjoonjang/markers_bm): 금융, 공공, 의료, 법률, 커머스 5개 분야에 대해, pdf를 파싱하여 구성한 한국어 문서 검색 데이터셋
-- [MIRACLRetrieval]([url](https://huggingface.co/datasets/miracl/miracl): Wikipedia 기반의 한국어 문서 검색 데이터셋
-- [PublicHealthQA]([url](https://huggingface.co/datasets/xhluca/publichealth-qa): 의료 및 공중보건 도메인에 대한 한국어 문서 검색 데이터셋
-- [BelebeleRetrieval]([url](https://huggingface.co/datasets/facebook/belebele): FLORES-200 기반의 한국어 문서 검색 데이터셋
+- [MIRACLRetrieval](https://huggingface.co/datasets/miracl/miracl): Wikipedia 기반의 한국어 문서 검색 데이터셋
+- [PublicHealthQA](https://huggingface.co/datasets/xhluca/publichealth-qa): 의료 및 공중보건 도메인에 대한 한국어 문서 검색 데이터셋
+- [BelebeleRetrieval](https://huggingface.co/datasets/facebook/belebele): FLORES-200 기반의 한국어 문서 검색 데이터셋
 - [MrTidyRetrieval](https://huggingface.co/datasets/mteb/mrtidy): Wikipedia 기반의 한국어 문서 검색 데이터셋
 - [MultiLongDocRetrieval](https://huggingface.co/datasets/Shitao/MLDR): 다양한 도메인의 한국어 장문 검색 데이터셋
 - [XPQARetrieval](https://huggingface.co/datasets/jinaai/xpqa): 다양한 도메인의 한국어 문서 검색 데이터셋

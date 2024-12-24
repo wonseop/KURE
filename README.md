@@ -56,7 +56,7 @@ print(similarities)
 <br/>
 
 ## MTEB-ko-retrieval Leaderboard
-MTEB에 등록된 모든 Korean Retrieval Benchmark에 대한 평가를 진행하였습니다.
+[MTEB](https://github.com/embeddings-benchmark/mteb)에 등록된 모든 Korean Retrieval Benchmark에 대한 평가를 진행하였습니다.
 ### Korean Retrieval Benchmark
 - [Ko-StrategyQA](https://huggingface.co/datasets/taeminlee/Ko-StrategyQA): 한국어 ODQA multi-hop 검색 데이터셋 (StrategyQA 번역)
 - [AutoRAGRetrieval](https://huggingface.co/datasets/yjoonjang/markers_bm): 금융, 공공, 의료, 법률, 커머스 5개 분야에 대해, pdf를 파싱하여 구성한 한국어 문서 검색 데이터셋

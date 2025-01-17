@@ -1,3 +1,4 @@
 mteb
 python-dotenv
 streamlit
+setproctitle

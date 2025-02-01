@@ -1,7 +1,7 @@
 {
   "dataset_revision": "fd7df84ac089bbec763b1c6bb1b56e985df5cc5c",
   "task_name": "AutoRAGRetrieval",
-  "mteb_version": "1.21.6",
+  "mteb_version": "1.31.1",
   "scores": {
     "test": [
       {
@@ -153,6 +153,6 @@
       }
     ]
   },
-  "evaluation_time": 23.355713367462158,
+  "evaluation_time": 18.844976663589478,
   "kg_co2_emissions": null
 }

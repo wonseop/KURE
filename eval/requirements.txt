@@ -2,3 +2,5 @@ mteb
 python-dotenv
 streamlit
 setproctitle
+mteb[gritlm]
+mteb[jina]

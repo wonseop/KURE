@@ -6,6 +6,9 @@ import os
 import logging
 from multiprocessing import Process, current_process
 import torch
+import gc
+from typing import List
+from tqdm import tqdm
 
 os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "expandable_segments:True"
 
@@ -76,6 +79,7 @@ TASK_LIST_RETRIEVAL_GPU_MAPPING = {
         "BelebeleRetrieval",
         "XPQARetrieval",
         "MultiLongDocRetrieval",
+        "MrTidyRetrieval",
     ],
     # 1: ["MIRACLRetrieval"],
     # 2: ["MrTidyRetrieval"],
@@ -106,6 +110,27 @@ model_names = [
     # "jhgan/ko-sroberta-multitask",  # 128
     "Snowflake/snowflake-arctic-embed-l-v2.0",  # 8192,
 ] + model_names
+
+
+# Add this helper function
+def batch_encode(model, sentences: List[str], batch_size: int = 32):
+    """Encode sentences in batches with memory optimization"""
+    embeddings = []
+
+    # Process in batches
+    for i in tqdm(range(0, len(sentences), batch_size)):
+        batch = sentences[i : i + batch_size]
+
+        # Clear cache before each batch
+        torch.cuda.empty_cache()
+        gc.collect()
+
+        with torch.amp.autocast("cuda"):  # Use automatic mixed precision
+            batch_embeddings = model.encode(batch, convert_to_tensor=True)
+            embeddings.append(batch_embeddings.cpu())  # Move to CPU immediately
+
+    # Concatenate all embeddings
+    return torch.cat(embeddings)
 
 
 def evaluate_model(model_name, gpu_id, tasks):
@@ -154,22 +179,38 @@ def evaluate_model(model_name, gpu_id, tasks):
                     model_prompts = {
                         PromptType.query.value: "query: ",
                     }
+                    model_kwargs = {
+                        "attn_implementation": "sdpa",
+                        "device_map": "auto",  # Enable model parallelism
+                        "torch_dtype": torch.float16,  # Use fp16 for memory efficiency
+                    }
                     model = SentenceTransformerWrapper(
                         model=model_name,
                         model_prompts=model_prompts,
-                        model_kwargs={"attn_implementation": "sdpa"},
+                        model_kwargs=model_kwargs,
                     )
                 elif model_name == "Alibaba-NLP/gte-multilingual-base":
+                    model_kwargs = {
+                        "attn_implementation": "sdpa",
+                        "device_map": "auto",  # Enable model parallelism
+                        "torch_dtype": torch.float16,  # Use fp16 for memory efficiency
+                    }
                     model = mteb.get_model(
                         model_name,
-                        model_kwargs={"attn_implementation": "sdpa"},
+                        model_kwargs=model_kwargs,
                         trust_remote_code=True,
                     )
                 else:
                     # mteb에 등록된 모델의 경우, 프롬프트/prefix 등을 포함하여 평가할 수 있습니다. 등록되지 않은 경우, sentence-transformer를 사용하여 불러옵니다.
+                    model_kwargs = {
+                        "attn_implementation": "sdpa",
+                        "device_map": "auto",  # Enable model parallelism
+                        "torch_dtype": torch.float16,  # Use fp16 for memory efficiency
+                    }
                     model = mteb.get_model(
                         model_name,
-                        model_kwargs={"attn_implementation": "sdpa"}
+                        model_kwargs=model_kwargs,
+                        trust_remote_code=True,
                     )
         else:  # 직접 학습한 모델의 경우
             file_name = os.path.join(model_name, "model.safetensors")
@@ -183,22 +224,31 @@ def evaluate_model(model_name, gpu_id, tasks):
                         model_kwargs={"attn_implementation": "sdpa"},
                     )
                 else:
-                    model = mteb.get_model(
-                        model_name, model_kwargs={"attn_implementation": "sdpa"}
-                    )
+                    model_kwargs = {
+                        "attn_implementation": "sdpa",
+                        "device_map": "auto",  # Enable model parallelism
+                        "torch_dtype": torch.float16,  # Use fp16 for memory efficiency
+                    }
+                    model = mteb.get_model(model_name, model_kwargs=model_kwargs)
     except Exception as ex:
         print("##### attention 적용 모델 로딩 실패 --> attention 적용 없이 재시도")
         print(ex)
 
         try:
-            model = mteb.get_model(
-                model_name
-            )
+            model = mteb.get_model(model_name)
 
         except Exception as ex:
             print(ex)
             traceback.print_exc()
 
+    # Set PyTorch memory allocator configurations
+    torch.cuda.set_per_process_memory_fraction(0.9)  # Leave some GPU memory free
+    torch.backends.cuda.max_split_size_mb = 512  # Limit memory splits
+
+    # Add environment variable for memory management
+    os.environ["PYTORCH_CUDA_ALLOC_CONF"] = (
+        "max_split_size_mb:512,expandable_segments:True"
+    )
 
     try:
         if model:
@@ -210,7 +260,8 @@ def evaluate_model(model_name, gpu_id, tasks):
             evaluation = MTEB(
                 tasks=get_tasks(
                     tasks=tasks, languages=["kor-Kore", "kor-Hang", "kor_Hang"]
-                )
+                ),
+                task_kwargs={"Ko-StrategyQA": {"data_config": "default"}},
             )
             # 48GB VRAM 기준 적합한 batch sizes
             if (
@@ -222,7 +273,7 @@ def evaluate_model(model_name, gpu_id, tasks):
                 batch_size = 512
             elif "jina" in model_name:
                 batch_size = 8
-            elif "bge-m3" in model_name or "Snowflake" in model_name:
+            elif "bge-m3" in model_name or "Snowflake" in model_name or "KURE-v1" in model_name:
                 batch_size = 32
             elif "gemma2" in model_name:
                 batch_size = 256
@@ -252,7 +303,7 @@ if __name__ == "__main__":
     processes = []
 
     print(f"taeminlee/Ko-StrategyQA loading")
-    dataset = load_dataset('taeminlee/Ko-StrategyQA', 'default')
+    dataset = load_dataset("taeminlee/Ko-StrategyQA", "default")
 
     # Evaluate one model at a time to better manage resources
     for model_name in model_names:
